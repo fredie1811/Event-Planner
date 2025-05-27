@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{% for event in EVENTS %}
+    <h1 style="margin-top: 50px; color: white; text-align: center;">{{event}}</h1>
+    <table class = "event" style="margin-top: 20px;">
+        <thead>
+            <th style="width: 100px;"><b>Date</b></th>
+            <th><b>Event</b></th>
+            <th style = "width: 70px;"> Delete</th>
+        </thead>
+        {% for info in data[EVENTS.index(event)] %}
+        <tbody>
+            {% if event == "Football" or event == "Miscellaneous" %}
+            <td>{{info.date}}/{{info.month}}/{{info.year}}</td>
+            {% else %}
+            <td>{{info.date}}/{{info.month}}</td>
+            {% endif %}
+            <td>{{info.description}}</td>
+            <td>
+                <form action = "/events" method = "post">
+                    <input type = "hidden" name = "remove" value = {{info.event_id}}>
+                    <button type = "submit">X</button>
+                </form>
+            </td>
+        </tbody>
+        {% endfor %}
+    </table>
+{% endfor %}
+{% endblock %}

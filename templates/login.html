@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block top %}
+<div class = "loginTitle" style="margin-top: 70px;">
+    Log In
+</div>
+{% endblock %}
+
+{% block body %}
+<div class = "login">
+    <form action="/login" method="post">
+        {% if text %}
+        {% if green == 1 %}
+        <div class = "mb-3" style="color: green;text-align: center; width: 100%;">{{text}}</div>
+        {% else %}
+        <div class = "mb-3" style="color: red;text-align: center; width: 100%;">{{text}}</div>
+        {% endif %}
+        {% endif %}
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="username" placeholder="Username" type="text" style = "margin-bottom: 20px;">
+        </div>
+        <div>
+            <input class="form-control mx-auto w-auto" name="password" placeholder="Password" type="password" style = "margin-bottom: 20px;">
+        </div>
+        
+        <button class="btn btn-primary" type="submit">Log In</button>
+    </form>
+</div>
+
+{% endblock %}
